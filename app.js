@@ -17,12 +17,42 @@
 
 const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
+const greeting = document.querySelector("#greeting");
+const comment = document.querySelector("#greeting h1");
+const logoutBtn = document.querySelector("#greeting button");
 
+// 표기 관습. 일반적으로 string만 포함된 변수는 대문자로 적는다.
+const HIDDEN_CLASSNAME = "hidden";
+const USERNAME_KEY = "username";
+
+// 로그인폼
 function onLoginSubmit(event) {
   event.preventDefault();
-  const username = loginInput.value;
-  loginForm.classList.add("hidden");
-  console.log(username);
+  loginForm.classList.add(HIDDEN_CLASSNAME);
+  const typedName = loginInput.value;
+  // localStorage.setItem(keyName, keyValue)
+  localStorage.setItem(USERNAME_KEY, typedName);
+  paintGreetings(typedName);
 }
 
-loginForm.addEventListener("submit", onLoginSubmit);
+// 로그아웃도 그냥 만들어봤다^3^
+function onLogoutClick() {
+  localStorage.removeItem(USERNAME_KEY);
+  window.location.reload();
+}
+
+// 로그인 시 유저이름 띄우기
+function paintGreetings(name) {
+  comment.innerText = `Hello, ${name}`;
+  greeting.classList.remove(HIDDEN_CLASSNAME);
+}
+
+const savedUsername = localStorage.getItem(USERNAME_KEY);
+
+if (savedUsername === null) {
+  loginForm.classList.remove(HIDDEN_CLASSNAME);
+  loginForm.addEventListener("submit", onLoginSubmit);
+} else {
+  paintGreetings(savedUsername);
+  logoutBtn.addEventListener("click", onLogoutClick);
+}
