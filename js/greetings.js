@@ -13,7 +13,7 @@
 //   }
 // }
 
-/* form 태그를 사용함으로써 더 이상 click 이벤트를 신경 쓸 필요가 없다. (index에 써놨음) 문제는 form을 사용하면 버튼 클릭 시 submit을 해서 페이지가 새로고침되고 value값이 사라진다는 것이다. */
+/* form 태그를 사용함으로써 더 이상 click 이벤트를 신경 쓸 필요가 없다. (memo 1번 참고) 문제는 form을 사용하면 버튼 클릭 시 submit을 해서 페이지가 새로고침되고 value값이 사라진다는 것이다. */
 
 const loginForm = document.querySelector("#login-form");
 const loginInput = document.querySelector("#login-form input");
