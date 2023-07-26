@@ -48,6 +48,7 @@ function paintGreetings(name) {
 }
 
 const savedUsername = localStorage.getItem(USERNAME_KEY);
+// 로컬 스토리지에 해당 key에 대한 value가 없을 경우 null을 반환한다.
 
 if (savedUsername === null) {
   loginForm.classList.remove(HIDDEN_CLASSNAME);
