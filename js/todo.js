@@ -20,8 +20,11 @@ function deleteToDo(event) {
   // console.log(event.composedPath());
 
   const targetLi = event.target.parentElement;
-  console.log(targetLi.id);
+  console.log(typeof targetLi.id);
   targetLi.remove();
+  toDos = toDos.filter((toDo) => toDo.id !== parseInt(targetLi.id));
+  // id는 string 타입이기 때문에 number 타입으로 바꿔준다
+  saveToDos();
 }
 
 function paintToDo(todoItem) {
